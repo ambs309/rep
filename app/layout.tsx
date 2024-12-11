@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Link from "next/link"; // Importa o Link do Next.js
 import "./globals.css";
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,11 +27,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Header /> {/* Mantém o Header */}
+        <nav
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            margin: "20px 0",
+          }}
+        >
+          <Link href="/produtos">Produtos</Link>
+          <Link href="/tecnologias">Tecnologias</Link>
+        </nav>
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
